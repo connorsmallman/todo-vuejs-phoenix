@@ -12,13 +12,13 @@ export default {
       .then(response => commit('addTodo', response));
   },
 
-  deleteTodo({ commit }, todo) {
-    fetch(`/api/todos/${todo.id}`, { methed: 'DELETE' })
+  deleteTodo({ commit }, { todo }) {
+    fetch(`/api/todos/${todo.id}`, { method: 'DELETE' })
       .then(response => commit('deleteTodo', response));
   },
 
-  editTodo({ commit }, todo) {
-    fetch(`/api/todos/${todo.id}`, { method: 'PUT' })
-      .then(response => commit('editTodo', response));
+  editTodo({ commit }, { todo }) {
+    fetch(`/api/todos/${todo.id}`, { method: 'PUT', body: JSON.stringify({ todo }) })
+      .then(() => commit('editTodo', todo));
   }
 }

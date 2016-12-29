@@ -1,7 +1,7 @@
 defmodule BabyTodo.TodoView do
   use BabyTodo.Web, :view
 
-  def render("index.json", %{todos: todos}) do
+  def render("todos.json", %{todos: todos}) do
     %{data: render_many(todos, BabyTodo.TodoView, "todo.json")}
   end
 

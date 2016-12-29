@@ -13,10 +13,8 @@ export default {
     state.todos.splice(state.todos.indexOf(todo), 1)
   },
 
-  editTodo(state, { todo, title, body, cost }) {
-    todo.title = title;
-    todo.body = body;
-    todo.cost = cost;
+  editTodo(state, { todo }) {
+    state.todos[state.todos.indexOf(todo)] = todo;
   },
 
   toggleTodo(state, { todo }) {

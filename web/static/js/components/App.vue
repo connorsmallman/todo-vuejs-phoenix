@@ -1,5 +1,3 @@
-<!--<style src="todomvc-app-css/index.css"></style>-->
-
 <template>
   <section class="todoapp">
     <!-- header -->
@@ -56,6 +54,7 @@ const filters = {
 }
 
 export default {
+  name: 'baby-todo-app',
   components: { Todo },
   data () {
     return {

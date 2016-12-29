@@ -10,15 +10,23 @@
           complete
       </label>
     </header>
-    <div @dblclick="editing = true">
-      <h1>{{todo.title}}</h1>
-      <p>{{todo.body}}</p>
-    </div>
-    <div class="edit" v-show="editing">
-      <input type="text" v-model="todo.title"/>
-      <textarea type="text" v-model="todo.body"></textarea>
-      <button class="save" @click="doneEdit">save</button>
-      <button class="cancel" @click="cancelEdit">cancel</button>
+    <div>
+      <input
+        id="title"
+        @blur="doneEdit"
+        :value="todo.title"
+        type="text">
+      <textarea
+        id="body"
+        @blur="doneEdit"
+        :value="todo.body"
+        type="text">
+      </textarea>
+      <input
+        id="cost"
+        @blur="doneEdit"
+        :value="todo.cost"
+        type="number">
     </div>
     <footer>
       <button class="destroy" @click="deleteTodo({ todo: todo })">delete</button>
@@ -29,13 +37,8 @@
 <script>
 import { mapMutations, mapActions } from 'vuex';
 export default {
-  name: 'Todo',
+  name: 'todo',
   props: ['todo'],
-  data () {
-    return {
-      editing: false
-    }
-  },
   directives: {
     focus (el, { value }, { context }) {
       if (value) {
@@ -53,14 +56,14 @@ export default {
     ...mapMutations([
       'toggleTodo',
     ]),
-    doneEdit() {
-      const { todo } = this
+    doneEdit(e) {
+      const value = e.target.value;
+      const type = e.target.id;
+      const { todo } = this;
 
-      if (!title) {
-        this.deleteTodo({ todo });
-      } else if (this.editing) {
+      if (todo[type] !== value) {
+        todo[type] = value;
         this.editTodo({ todo });
-        this.editing = false
       }
     }
   }
