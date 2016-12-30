@@ -4,28 +4,23 @@
     <header class="header">
       <h1>todos</h1>
       <div class="new-todo">
+        <h2>What do you need buy?</h2>
         <input v-model="title" autofocus autocomplete="off" placeholder="title">
-        <textarea v-model="body" placeholder="body"></textarea>
-        <input v-model="cost" placeholder="cost"/>
+        <input v-model="body" placeholder="body">
+        <input v-model="cost" placeholder="cost">
         <button @click="addTodo">Add</button>
       </div>
     </header>
     <!-- main section -->
     <section class="main" v-show="todos.length">
-      <label for="toggleAll">
-        <input name="toggleAll" id="toggleAll" class="toggle-all"
-          type="checkbox"
-          :checked="allChecked"
-          @change="toggleAll({ done: !allChecked })">
-        Toggle all
-      </label>
       <todo v-for="todo in filteredTodos" :todo="todo"></todo>
     </section>
     <!-- footer -->
     <footer class="footer" v-show="todos.length">
       <span class="todo-count">
         <strong>{{ remaining }}</strong>
-        {{ remaining | pluralize('item') }} left
+        {{ remaining | pluralize('item') }} left with total cost
+        <strong>&pound;{{ total }}</strong>
       </span>
       <ul class="filters">
         <li v-for="(val, key) in filters">
@@ -34,17 +29,12 @@
             @click="visibility = key">{{ key | capitalize }}</a>
         </li>
       </ul>
-      <button class="clear-completed"
-        v-show="todos.length > remaining"
-        @click="clearCompleted">
-        Clear completed
-      </button>
     </footer>
   </section>
 </template>
 
 <script>
-import { mapMutations, mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import Todo from './Todo.vue';
 
 const filters = {
@@ -69,6 +59,7 @@ export default {
     ...mapGetters([
       'todos',
       'allChecked',
+      'total',
       'remaining'
     ]),
     filteredTodos () {
@@ -91,11 +82,7 @@ export default {
       }
 
       this.clearForm();
-    },
-    ...mapMutations([
-      'toggleAll',
-      'clearCompleted'
-    ])
+    }
   },
   filters: {
     pluralize: (n, w) => n === 1 ? w : (w + 's'),

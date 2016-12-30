@@ -1,5 +1,3 @@
-import * as types from './mutation-types'
-
 export default {
   addTodo(state, todo) {
     state.todos.push(todo);
@@ -18,11 +16,7 @@ export default {
   },
 
   toggleTodo(state, { todo }) {
-    todo.complete = !todo.complete;
-  },
-
-  toggleAll(state, { complete }) {
-    state.todos.forEach(todo => todo.complete = complete);
+    todo.complete;
   },
 
   clearCompleted(state) {

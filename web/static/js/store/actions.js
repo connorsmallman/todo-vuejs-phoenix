@@ -19,6 +19,11 @@ export default {
 
   editTodo({ commit }, { todo }) {
     fetch(`/api/todos/${todo.id}`, { method: 'PUT', body: JSON.stringify({ todo }) })
-      .then(() => commit('editTodo', todo));
+      .then(() => commit('editTodo', { todo }));
+  },
+
+  toggleTodo({ commit }, { todo }) {
+    fetch(`/api/todos/${todo.id}`, { method: 'PUT', body: JSON.stringify({ todo }) })
+      .then(() => commit('toggleTodo', { todo }));
   }
 }

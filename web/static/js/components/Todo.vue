@@ -1,36 +1,30 @@
 <template>
   <article class="todo" :class="{ completed: todo.complete, editing: editing }">
-    <header>
-      <label for="complete">
-        <input class="toggle"
-          type="checkbox"
-          id="complete"
-          :checked="todo.complete"
-          @change="toggleTodo({ todo: todo })">
-          complete
-      </label>
-    </header>
-    <div>
+    <div class="todo-control">
+      <input class="toggle"
+        type="checkbox"
+        id="complete"
+        :checked="todo.complete"
+        @change="toggleTodo({ todo: todo })">
+    </div>
+    <div class="todo-body">
       <input
         id="title"
         @blur="doneEdit"
         :value="todo.title"
         type="text">
-      <textarea
+      <input
         id="body"
         @blur="doneEdit"
         :value="todo.body"
         type="text">
-      </textarea>
       <input
         id="cost"
         @blur="doneEdit"
         :value="todo.cost"
         type="number">
+      <button class="destroy" @click="deleteTodo({ todo: todo })">Delete</button>
     </div>
-    <footer>
-      <button class="destroy" @click="deleteTodo({ todo: todo })">delete</button>
-    </footer>
   </article>
 </template>
 
@@ -53,15 +47,17 @@ export default {
       'editTodo',
       'deleteTodo'
     ]),
-    ...mapMutations([
-      'toggleTodo',
-    ]),
+    toggleTodo(e) {
+      const { todo } = this;
+      todo.complete = !todo.complete;
+      this.$store.dispatch('toggleTodo', { todo });
+    },
     doneEdit(e) {
       const value = e.target.value;
       const type = e.target.id;
       const { todo } = this;
 
-      if (todo[type] !== value) {
+      if (todo[type] != value) {
         todo[type] = value;
         this.editTodo({ todo });
       }

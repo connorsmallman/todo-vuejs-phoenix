@@ -1,10 +1,117 @@
+body {
+  font-size: 24px;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: capitalize;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
 input,
 textarea {
   border: 0;
+  display: block;
+  padding: .6rem .6rem .2rem 0;
+  font-size: 2rem;
+  width: 100%;
+  border-bottom: 0.1rem solid transparent;
 }
 
 input:focus,
 textarea:focus {
   outline: 0;
-  border-bottom: 0.1rem solid #333
+  border-bottom: 0.1rem solid #333;
+}
+
+input[type="checkbox"] {
+  display: inline;
+  width: auto;
+}
+
+textarea {
+  resize: none;
+}
+
+header {
+  margin-bottom: 2rem;
+}
+
+button {
+  padding: .8rem 2rem;
+  border-radius: .8rem;
+  border: 0;
+  background: green;
+  color: white;
+  font-size: 1rem;
+  transform: perspective(1rem) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+button:hover {
+  transform: translateX(8px);
+}
+
+article.todo {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+}
+
+article.todo:first-child {
+  border-radius: .2rem .2rem 0 0;
+}
+
+article.todo:last-child {
+  border-radius: 0 0 .2rem .2rem;
+  border-bottom: 1px solid #333;
+}
+
+article.todo .todo-control {
+  width: 8%;
+  text-align: center;
+}
+
+article.todo .todo-control input[type="checkbox"] {
+  padding: 0;
+  margin: 0;
+}
+
+article.todo .todo-body {
+  border-left: 1px solid #333;
+  padding: .8rem;
+  width: 92%;
+}
+
+article.todo .todo-body button {
+  margin-top: .8rem;
+}
+
+.footer {
+  margin-top: 3rem;
+}
+
+.new-todo button {
+  margin-top: 2rem;
 }
