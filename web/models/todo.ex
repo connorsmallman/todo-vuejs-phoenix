@@ -15,7 +15,7 @@ defmodule BabyTodo.Todo do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :body, :cost])
+    |> cast(params, [:title, :body, :cost, :complete])
     |> validate_required([:title, :body])
   end
 end

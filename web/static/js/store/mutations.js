@@ -16,7 +16,7 @@ export default {
   },
 
   toggleTodo(state, { todo }) {
-    todo.complete;
+    state.todos[state.todos.indexOf(todo)] = todo;
   },
 
   clearCompleted(state) {

@@ -23,6 +23,7 @@ export default {
   },
 
   toggleTodo({ commit }, { todo }) {
+    console.log(JSON.stringify(todo));
     fetch(`/api/todos/${todo.id}`, { method: 'PUT', body: JSON.stringify({ todo }) })
       .then(() => commit('toggleTodo', { todo }));
   }

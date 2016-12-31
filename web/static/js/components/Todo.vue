@@ -50,6 +50,9 @@ export default {
     toggleTodo(e) {
       const { todo } = this;
       todo.complete = !todo.complete;
+
+      console.log(todo.complete);
+
       this.$store.dispatch('toggleTodo', { todo });
     },
     doneEdit(e) {
